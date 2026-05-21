@@ -79,7 +79,7 @@ export default function Navbar({ onCartClick, cartCount, cartOpen, setCartOpen, 
           {/* CENTER — logo */}
           <div className="col-start-1 lg:col-start-2 flex justify-start lg:justify-center flex-shrink-0">
             <Link to="/">
-              <img src="/images/logo.png" alt="logo" className="w-[140px] lg:w-[200px] h-auto" />
+              <img src="/Images/logo.png" alt="logo" className="w-[140px] lg:w-[200px] h-auto" />
             </Link>
           </div>
 
@@ -100,7 +100,7 @@ export default function Navbar({ onCartClick, cartCount, cartOpen, setCartOpen, 
             </div>
 
             <Link to="/login" className="flex items-center">
-              <img src="/images/user.png" alt="user" className="w-[28px] h-auto" />
+              <img src="/Images/user.png" alt="user" className="w-[28px] h-auto" />
             </Link>
 
             <div className="relative flex items-center">
@@ -108,7 +108,7 @@ export default function Navbar({ onCartClick, cartCount, cartOpen, setCartOpen, 
                 onClick={() => setCartOpen(true)}
                 className="cursor-pointer bg-transparent border-none p-0 flex items-center"
               >
-                <img src="/images/bag.png" alt="bag" className="w-[32px] h-auto" />
+                <img src="/Images/bag.png" alt="bag" className="w-[32px] h-auto" />
               </button>
               {cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
