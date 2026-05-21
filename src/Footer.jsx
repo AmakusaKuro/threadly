@@ -132,16 +132,16 @@ export default function Footer() {
             Allbirds in the wild.
           </p>
           <div className="flex gap-4 mt-2 opacity-80">
-            <img src="/images/insta.png" className="w-5 cursor-pointer" />
-            <img src="/images/twitter.png" className="w-5 cursor-pointer" />
-            <img src="/images/fb.png" className="w-5 cursor-pointer" />
-            <img src="/images/tik.png" className="w-5 cursor-pointer" />
+            <img src="/Images/insta.png" className="w-5 cursor-pointer" />
+            <img src="/Images/twitter.png" className="w-5 cursor-pointer" />
+            <img src="/Images/fb.png" className="w-5 cursor-pointer" />
+            <img src="/Images/tik.png" className="w-5 cursor-pointer" />
           </div>
         </div>
 
         {/* CENTER */}
         <div className="flex justify-center">
-          <img src="/images/icon-b-corp.webp" className="w-20" />
+          <img src="/Images/icon-b-corp.webp" className="w-20" />
         </div>
 
         {/* RIGHT */}
