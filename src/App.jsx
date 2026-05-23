@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./Navbar";
 import Banner from "./Banner";
@@ -18,16 +18,26 @@ import Login from "./Login";
 import CreateAccount from "./Register";
 import ProductPage from "./ProductPage";
 import CheckoutPage from "./CheckoutPage";
+import OrderSuccess from "./OrderSuccess";
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      const saved = localStorage.getItem("cartItems");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
   const [cartOpen, setCartOpen] = useState(false);
 
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-
         {/* Checkout — completely standalone, no navbar/footer */}
         <Route
           path="/checkout"
@@ -69,13 +79,9 @@ function App() {
                   <Route path="/register" element={<CreateAccount />} />
                   <Route
                     path="/product"
-                    element={
-                      <ProductPage
-                        setCartItems={setCartItems}
-                        setCartOpen={setCartOpen}
-                      />
-                    }
+                    element={<ProductPage setCartItems={setCartItems} />}
                   />
+                  <Route path="/order-success" element={<OrderSuccess />} />
                 </Routes>
               </main>
               <Approach />
@@ -83,7 +89,6 @@ function App() {
             </div>
           }
         />
-
       </Routes>
     </BrowserRouter>
   );

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Lock, HelpCircle, CreditCard, Wallet } from "lucide-react";
+import PayPalPayment from "./PayPalPayment";
+import RazorpayPayment from "./RazorpayPayment";
 
-export default function PaymentSection() {
+export default function PaymentSection({ cartTotal }) {
   const [method, setMethod] = useState("card");
   const [billing, setBilling] = useState(true);
 
@@ -68,8 +70,17 @@ export default function PaymentSection() {
           <Wallet size={18} className="text-blue-700" />
         </label>
 
+        {method === "paypal" && (
+          <div className="px-4 py-4 bg-white border-b border-gray-200">
+            <p className="text-sm text-gray-500 mb-3">
+              You'll be redirected to PayPal to complete your payment.
+            </p>
+            <PayPalPayment cartTotal={cartTotal} />
+          </div>
+        )}
+
         {/* Afterpay */}
-        <label className={`flex items-center justify-between px-4 py-3 cursor-pointer
+        <label className={`flex items-center justify-between px-4 py-3 cursor-pointer border-b border-gray-200
           ${method === "afterpay" ? "bg-blue-50" : "hover:bg-gray-50"}`}>
           <div className="flex items-center gap-3">
             <input type="radio" name="payment" value="afterpay" checked={method === "afterpay"}
@@ -80,6 +91,26 @@ export default function PaymentSection() {
             <CreditCard size={12} /> afterpay
           </span>
         </label>
+
+        {/* Razorpay — inside the border div */}
+        <label className={`flex items-center justify-between px-4 py-3 cursor-pointer
+          ${method === "razorpay" ? "bg-blue-50" : "hover:bg-gray-50"}`}>
+          <div className="flex items-center gap-3">
+            <input type="radio" name="payment" value="razorpay" checked={method === "razorpay"}
+              onChange={() => setMethod("razorpay")} className="accent-blue-600" />
+            <span className="text-sm font-medium">Razorpay</span>
+          </div>
+          <span className="text-[#072654] font-bold text-sm italic">razorpay</span>
+        </label>
+
+        {method === "razorpay" && (
+          <div className="px-4 py-4 bg-white">
+            <p className="text-sm text-gray-500 mb-3">
+              Pay securely using UPI, Cards, NetBanking, or Wallets.
+            </p>
+            <RazorpayPayment cartTotal={cartTotal} />
+          </div>
+        )}
 
       </div>
 
